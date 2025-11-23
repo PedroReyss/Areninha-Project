@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Areninha - Acertar Palavra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-success">
+        <div class="container">
+            <a href="/home" class="btn btn-outline-light">← Voltar</a>
+            <span class="navbar-brand">🔤 Acertar Palavra</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4 text-center">
+        <h1>🔤 Acertar Palavra</h1>
+        
+        <div class="alert alert-info mt-4">
+            <h3 th:text="${palavraOculta}">____</h3>
+        </div>
+        
+        <div class="alert alert-warning">
+            <strong>💡 Dica:</strong> <span th:text="${dica}">Dica aqui</span>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Tentativas</h5>
+                        <h3 th:text="${tentativas}" class="text-warning">6</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Pontuação</h5>
+                        <h3 th:text="${pontuacao}" class="text-success">0</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${resultado}" class="alert mt-4" 
+             th:classappend="${resultado.contains('🎉')} ? 'alert-success' : 'alert-danger'">
+            <h5 th:text="${resultado}"></h5>
+        </div>
+
+        <form th:if="${jogoAtivo}" th:action="@{/acertarpalavra/jogar}" method="post" class="mt-4">
+            <div class="mb-3">
+                <label for="letra" class="form-label h5">Digite uma letra:</label>
+                <input type="text" id="letra" name="letra" maxlength="1" 
+                       class="form-control text-center" 
+                       style="width: 100px; margin: 0 auto; font-size: 1.5em;" 
+                       required autofocus>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">🎯 Tentar Letra</button>
+        </form>
+
+        <div th:if="${not letrasTentadas.empty}" class="mt-4">
+            <h5>Letras tentadas:</h5>
+            <div th:each="letra : ${letrasTentadas}" 
+                 th:text="${letra + ' '}" 
+                 class="badge bg-secondary fs-6 m-1">
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a th:href="@{/acertarpalavra/reiniciar}" class="btn btn-success">🔄 Novo Jogo</a>
+            <a href="/home" class="btn btn-secondary">🏠 Menu Principal</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('letra')?.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^A-Za-z]/g, '').toUpperCase();
+        });
+    </script>
+</body>
+</html>
