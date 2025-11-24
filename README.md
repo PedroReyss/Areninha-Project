@@ -13,6 +13,10 @@ Vinicius Yamaguti Augusto - 081220040
 
 ---
 
+## 📚 Documentação
+- [Projeto de Software (PDF)](./Areninha-doc.pdf)
+- [Diagrama UML (UML)](./UML.png)
+
 ## 🕹️ Jogos Disponíveis
 
 ### **1. Acertar Palavra**
@@ -179,4 +183,4 @@ src/main/java/com/cefsa/areninha/
 └── resources/
     ├── templates/
     └── static/
-
+```
