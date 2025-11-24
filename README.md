@@ -46,7 +46,7 @@ Vinicius Yamaguti Augusto - 081220040
 
 - **Backend:** Java Spring Boot  
 - **Frontend:** Thymeleaf, HTML, CSS, JavaScript  
-- **Banco de Dados:** MySQL (via Spring Data JPA)  
+- **Banco de Dados:** SQL Server (via Spring Data JPA)  
 - **Autenticação:** Sessão customizada  
 - **Build:** Maven  
 
