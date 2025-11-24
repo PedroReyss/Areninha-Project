@@ -1,100 +1,100 @@
-# ProjetoN2
-+--------------------------------+
-|           Usuario              |
-+--------------------------------+
-| - id: Long                     |
-| - nomeUsuario: String          |
-| - email: String                |
-| - senha: String                |
-| - pontuacaoTotal: int          |
-| - dataUltimoJogo: LocalDate    |
-+--------------------------------+
-| +jogar(jogo: Jogo): void       |
-| +adicionarAmigo(u: Usuario)    |
-| +entrarGuilda(g: Guilda)       |
-| +editarPerfil(p: Perfil)       |
-| +usarConsumivel(c: Consumivel, alvo: Usuario): void |
-+--------------------------------+
-             |
-             | 1
-             |-------------------+
-             |                   | 1
-        +----------+       +---------------+
-        |  Perfil  |       |  Inventario   |
-        +----------+       +---------------+
-        | - nome: String   | - id: Long    |
-        | - avatarURL: Str | - itens: List<Consumivel> |
-        | - bio: String    +---------------+
-        +----------+       | +adicionar(c: Consumivel) |
-                           | +remover(c: Consumivel)   |
-                           | +listarItens(): List<Consumivel> |
-                           +---------------+
-                                   |
-                                   | 1
-                                   |-------+
-                                   |       | *
-                              +-------------------+
-                              |   Consumivel      |
-                              +-------------------+
-                              | - id: Long        |
-                              | - nome: String    |
-                              | - tipo: TipoConsumivel |
-                              | - efeito: EfeitoConsumivel |
-                              | - descricao: String |
-                              +-------------------+
-                              | +usar(alvo: Usuario): void |
-                              +-------------------+
+# 🎮 Areninha — Plataforma de Jogos 
 
-+---------------------------+
-|  EfeitoConsumivel         |
-+---------------------------+
-| - tipoEfeito: String      |
-| - intensidade: double     |
-| - duracao: int            |
-+---------------------------+
-| +aplicar(alvo: Usuario)   |
-+---------------------------+
+A **Areninha** é uma plataforma web interativa desenvolvida em **Java Spring Boot**, oferecendo uma coleção de jogos educativos com sistema de pontuação, ranking global e gerenciamento completo de usuários.
 
-+------------------+
-|    Jogo          |
-+------------------+
-| - id: Long       |
-| - nome: String   |
-| - descricao: Str |
-| - chanceDrop: double |
-+------------------+
-| +jogar(u: Usuario) |
-| +sortearDrop(): Consumivel |
-+------------------+
-        |
-        | 1
-        |--------------------+
-        |                    | *
-   +-------------+       +----------------+
-   |  SessaoJogo |       |   Pontuacao    |
-   +-------------+       +----------------+
-   | - id: Long  |       | - valor: int   |
-   | - data: LocalDate | | - multiplicador: double |
-   +-------------+       | - usuario: Usuario |
-   | +calcularPontos()  | - jogo: Jogo |
-   +-------------+       +----------------+
+---
+## 👥 Integrantes do Projeto
 
-+------------------+
-| DropService      |
-+------------------+
-| +gerarDrop(jogo: Jogo): Optional<Consumivel> |
-+------------------+
+Pedro Henrique Simões Reys - 081230022
 
-+----------------------+
-| Guilda               |
-+----------------------+
-| - id: Long           |
-| - nome: String       |
-| - descricao: String  |
-| - membros: List<Usuario> |
-| - ranking: Ranking   |
-+----------------------+
-| +addMembro(u:Usuario) |
-| +removerMembro(u:Usuario) |
-| +calcularRanking()    |
-+----------------------+
+André Mende Garcia - 081230012
+
+Vinicius Yamaguti Augusto - 081220040
+
+---
+
+## 🕹️ Jogos Disponíveis
+
+### **1. Acertar Palavra**
+- Jogo de forca com palavras relacionadas à tecnologia  
+- Sistema de dicas e pontuação progressiva  
+- Banco de palavras com termos de programação  
+
+### **2. Adivinhação de Número**
+- Adivinhe um número entre 1 e 100  
+- Dicas inteligentes (par/ímpar)  
+- Pontuação baseada nas tentativas  
+
+### **3. Batalha Naval**
+- Clássico jogo de estratégia naval  
+- Tabuleiro 8x8 para posicionamento  
+- Sistema de ataque alternado entre jogador e IA  
+
+---
+
+## 🚀 Funcionalidades
+
+- **Autenticação** (login e cadastro)  
+- **Perfil do Usuário** (edição de dados pessoais)  
+- **Ranking Global** dos melhores jogadores  
+- **Histórico de Partidas**  
+- **Administração** de usuários (para contas admin)  
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Backend:** Java Spring Boot  
+- **Frontend:** Thymeleaf, HTML, CSS, JavaScript  
+- **Banco de Dados:** MySQL (via Spring Data JPA)  
+- **Autenticação:** Sessão customizada  
+- **Build:** Maven  
+
+---
+
+## 📋 Pré-requisitos
+
+- **Java 17+**  
+- **Maven 3.6+**  
+- **MySQL 5.7+**  
+- IDE como **IntelliJ**, **Eclipse** ou **VS Code**  
+
+---
+
+## 🚀 Como Executar
+
+### 1. Clone o repositório
+```bash
+git clone https://github.com/seu-usuario/areninha.git
+cd areninha
+
+```
+---
+
+## 🚀 Configure o banco de dados
+
+-> Crie um banco MySQL chamado areninha
+
+-> Ajuste as credenciais em src/main/resources/application.properties
+
+---
+
+## 📁 Estrutura do Projeto
+
+```bash
+src/main/java/com/cefsa/areninha/
+├── controller/
+│   ├── LoginController.java
+│   ├── HomeController.java
+│   ├── AcertarPalavraController.java
+│   ├── AdivinhacaoController.java
+│   ├── BatalhaNavalController.java
+│   ├── RankingController.java
+│   ├── UsuarioController.java
+│   └── ErrosController.java
+├── model/
+├── dao/
+└── resources/
+    ├── templates/
+    └── static/
+
